@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IN-AGRICULTURE | Smart Farming for India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-900: #0f2418;
+    --green-700: #1e4620;
+    --green-500: #2e7d32;
+    --green-300: #66bb6a;
+    --accent: #c8e6c9;
+    --gold: #ffb74d;
+    --bg: #f8faf9;
+    --text: #1a1a1a;
+    --glass: rgba(255, 255, 255, 0.08);
+  }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .logo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+  }
+
+  /* Animated gradient blobs */
+  body::before, body::after {
+    content: '';
+    position: fixed;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.4;
+    z-index: -1;
+    animation: float 15s ease-in-out infinite;
+  }
+  body::before {
+    background: radial-gradient(circle, var(--green-300), transparent);
+    top: -200px; left: -200px;
+  }
+  body::after {
+    background: radial-gradient(circle, var(--gold), transparent);
+    bottom: -200px; right: -200px;
+    animation-delay: -7s;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(50px, 50px) scale(1.1); }
+  }
+
+  /* Header */
+  header {
+    position: fixed;
+    top: 20px; left: 50%;
+    transform: translateX(-50%);
+    width: 90%; max-width: 1200px;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 36, 24, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    z-index: 1000;
+    transition: all 0.3s;
+  }
+
+  .logo {
+    font-size: 1.6rem;
+    color: white;
+  }
+  .logo span { color: var(--gold); }
+
+  nav {
+    display: flex;
+    gap: 2rem;
+  }
+  nav a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+  nav a:hover { color: white; }
+
+  .cta-btn {
+    padding: 0.7rem 1.5rem;
+    background: linear-gradient(135deg, var(--green-500), var(--green-300));
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(46, 125, 50, 0.4);
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 5% 80px;
+    background: linear-gradient(180deg, rgba(15,36,24,0.95) 0%, rgba(30,70,32,0.85) 100%),
+                url('image1.jpg') center/cover no-repeat;
+    color: white;
+    position: relative;
+  }
+
+  .hero-content {
+    max-width: 900px;
+    animation: fadeUp 1.2s ease-out;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: var(--glass);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    opacity: 0.85;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    padding: 1rem 2.5rem;
+    background: white;
+    color: var(--green-900);
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255,255,255,0.2);
+  }
+
+  .btn-ghost {
+    padding: 1rem 2.5rem;
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover {
+    background: var(--glass);
+    border-color: white;
+  }
+
+  /* Sections */
+  section {
+    padding: 100px 8%;
+  }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .section-tag {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    background: rgba(46, 125, 50, 0.1);
+    color: var(--green-500);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--green-900);
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Feature Grid */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .feature-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+
+  .feature-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+  }
+
+  .feature-body {
+    padding: 2rem;
+  }
+  .feature-body h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--green-900);
+  }
+  .feature-body p {
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* Stats */
+  .stats {
+    background: linear-gradient(135deg, var(--green-900), var(--green-700));
+    border-radius: 30px;
+    margin: 0 5%;
+    padding: 80px 5%;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    text-align: center;
+    color: white;
+  }
+
+  .stat-num {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--gold), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Testimonials */
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .testimonial {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+  }
+  .testimonial::before {
+    content: '"';
+    font-size: 6rem;
+    color: var(--accent);
+    position: absolute;
+    top: -20px; left: 20px;
+    font-family: serif;
+    opacity: 0.3;
+  }
+
+  .testimonial-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .testimonial-footer img {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--green-500), var(--green-300));
+    border-radius: 30px;
+    padding: 80px 5%;
+    text-align: center;
+    color: white;
+    margin: 0 5%;
+  }
+  .cta-banner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--green-900);
+    color: rgba(255,255,255,0.7);
+    padding: 60px 8% 30px;
+    margin-top: 80px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  footer h4 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  footer a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.8rem;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  /* Scroll animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    header { width: 95%; padding: 1rem 1.5rem; }
+    nav { display: none; }
+    section { padding: 60px 5%; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">IN<span>AGRICULTURE</span></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#impact">Impact</a>
+    <a href="#stories">Stories</a>
+    <a href="#schemes">Schemes</a>
+  </nav>
+  <a href="#contact" class="cta-btn">Get Started</a>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">🌾 Trusted by 10k+ Zimbabwean  Farmers</div>
+    <h1>Farming Intelligence for the Modern Age</h1>
+    <p>Real-time crop monitoring, predictive weather, and direct marketplace access. Make data-driven decisions that increase yield and reduce costs.</p>
+    <div class="hero-buttons">
+      <a href="#features" class="btn-primary">Explore Features</a>
+      <a href="#contact" class="btn-ghost">Book a Demo</a>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="section-head reveal">
+    <div class="section-tag">Core Features</div>
+    <h2 class="section-title">Built for Every Acre</h2>
+    <p class="section-desc">Everything you need to run a smarter, more profitable farm — in one beautiful platform.</p>
+  </div>
+
+  <div class="features">
+    <div class="feature-card reveal">
+      <img src="image2.jpg" alt="Crop Monitoring">
+      <div class="feature-body">
+        <h3>Smart Crop Monitoring</h3>
+        <p>Satellite + IoT sensors track soil moisture, nutrient levels, and crop health 24/7. Get actionable insights before problems cost you money.</p>
+      </div>
+    </div>
+
+    <div class="feature-card reveal">
+      <img src="image3.jpg" alt="Weather">
+      <div class="feature-body">
+        <h3>Precision Weather Forecasting</h3>
+        <p>Hyperlocal 7-day forecasts down to your field level. Receive instant alerts for rain, frost, heat waves, and pest outbreaks.</p>
+      </div>
+    </div>
+
+    <div class="feature-card reveal">
+      <img src="image4.jpg" alt="Marketplace">
+      <div class="feature-body">
+        <h3>Direct Marketplace Access</h3>
+        <p>Buy inputs at wholesale rates and sell produce directly to buyers. Skip middlemen and get paid faster with secure digital payments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats" id="impact">
+  <div class="stats-grid">
+    <div class="reveal">
+      <div class="stat-num">10k+</div>
+      <div>Active Farmers</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">35%</div>
+      <div>Avg. Yield Increase</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">ZWL8M+</div>
+      <div>Transactions</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-num">18</div>
+      <div>States Covered</div>
+    </div>
+  </div>
+</section>
+
+<section id="stories">
+  <div class="section-head reveal">
+    <div class="section-tag">Farmer Stories</div>
+    <h2 class="section-title">Real Results from Real Farms</h2>
+  </div>
+
+  <div class="testimonials">
+    <div class="testimonial reveal">
+      <p>"Using IN-AGRICULTURE, I cut water usage by 30% and increased my wheat yield. The pest alerts saved my crop last season."</p>
+      <div class="testimonial-footer">
+        <img src="image5.jpg" alt="Farmer">
+        <div>
+          <strong>Ramesh Kumar</strong>
+          <div style="font-size: 0.9rem; color: #666;">Ludhiana, Punjab</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial reveal">
+      <p>"Selling directly through the platform got me 22% better prices. Payments are instant, no more waiting 30 days."</p>
+      <div class="testimonial-footer">
+        <img src="image6.jpg" alt="Farmer">
+        <div>
+          <strong>Sunita Patel</strong>
+          <div style="font-size: 0.9rem; color: #666;">Nashik, Maharashtra</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="schemes">
+  <div class="section-head reveal">
+    <div class="section-tag">Government Support</div>
+    <h2 class="section-title">Access All Agricultural Schemes</h2>
+  </div>
+
+  <div class="feature-card reveal" style="max-width: 900px; margin: 0 auto;">
+    <img src="image7.jpg" alt="Government schemes">
+    <div class="feature-body">
+      <h3>PM-KISAN, PM-KUSUM & More</h3>
+      <p>Check eligibility, apply online, and track your application status for all central and state agricultural schemes. No paperwork, no agents, no hassle.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner reveal">
+  <h2>Ready to Transform Your Farm?</h2>
+  <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Join thousands of farmers growing smarter with data-driven agriculture.</p>
+  <a href="#contact" class="btn-primary">Start Free Trial</a>
+</section>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="logo" style="margin-bottom: 1rem;">IN<span>AGRICULTURE</span></div>
+      <p>Empowering Zimbabwean agriculture through technology, data, and direct market access since 2021.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <a href="#">Features</a>
+      <a href="#">Pricing</a>
+      <a href="#">Mobile App</a>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <a href="mailto:support@in-agriculture.in">support@in-agriculture.in</a>
+      <a href="tel:+911800123456">1800-123-456</a>
+      <a href="#">Support Center</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 IN-AGRICULTURE. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Header background on scroll
+window.addEventListener('scroll', () => {
+  const header = document.querySelector('header');
+  if (window.scrollY > 50) {
+    header.style.background = 'rgba(15, 36, 24, 0.95)';
+  } else {
+    header.style.background = 'rgba(15, 36, 24, 0.7)';
+  }
+});
+</script>
+
+</body>
+</html>
